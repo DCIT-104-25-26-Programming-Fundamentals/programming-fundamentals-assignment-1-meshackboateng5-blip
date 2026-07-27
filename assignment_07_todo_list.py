@@ -77,5 +77,72 @@
 #
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
+tasks = []
+
+
+def show_menu():
+    print("=" * 27)
+    print("     TO-DO LIST MENU")
+    print("=" * 27)
+    print("1. Add task")
+    print("2. View tasks")
+    print("3. Delete task")
+    print("4. Quit")
+
+
+def add_task():
+    task = input("Enter task: ")
+    tasks.append(task)
+    print(f'Task added: "{task}"')
+
+
+def view_tasks():
+    if not tasks:
+        print("Your to-do list is empty.")
+        return
+    print("Your Tasks:")
+    for i, task in enumerate(tasks, start=1):
+        print(f"{i}. {task}")
+
+
+def delete_task():
+    if not tasks:
+        print("Your to-do list is empty.")
+        return
+    view_tasks()
+    choice = input("Enter task number to delete: ")
+    if not choice.isdigit():
+        print("Error: Please enter a valid task number.")
+        return
+    index = int(choice)
+    if index < 1 or index > len(tasks):
+        print("Error: That task number doesn't exist.")
+        return
+    removed = tasks.pop(index - 1)
+    print(f'Task "{removed}" has been removed.')
+
+
+def main():
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == "1":
+            add_task()
+        elif choice == "2":
+            view_tasks()
+        elif choice == "3":
+            delete_task()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Error: Please enter a number between 1 and 4.")
+
+        print()
+
+
+if __name__ == "__main__":
+    main()
 # =============================================================================
 
